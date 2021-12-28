@@ -22,7 +22,7 @@
 #include <system/audio.h>
 #include <vector>
 
-namespace android::audio_utils {
+namespace android { namespace audio_utils {
 
 class Balance {
 public:
@@ -173,6 +173,6 @@ private:
     const std::function<float(float)> mCurve; // monotone volume transfer func [0, 1] -> [0, 1]
 };
 
-} // namespace android::audio_utils
+} } // namespace android::audio_utils
 
 #endif // !ANDROID_AUDIO_UTILS_BALANCE_H

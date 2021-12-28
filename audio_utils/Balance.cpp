@@ -16,7 +16,7 @@
 
 #include <audio_utils/Balance.h>
 
-namespace android::audio_utils {
+namespace android { namespace audio_utils {
 
 void Balance::setChannelMask(audio_channel_mask_t channelMask)
 {
@@ -81,8 +81,8 @@ void Balance::setChannelMask(audio_channel_mask_t channelMask)
 
     mSides.resize(mChannelCount);
     for (unsigned i = 0, channel = channelMask; channel != 0; ++i) {
-        const int index = __builtin_ctz(channel);
-        if (index < std::size(sideFromChannel)) {
+        const unsigned int index = __builtin_ctz(channel);
+        if (index < sizeof(sideFromChannel) / sizeof(sideFromChannel[0])) {
             mSides[i] = sideFromChannel[index];
         } else {
             mSides[i] = 2; // consider center
@@ -198,4 +198,4 @@ void Balance::setBalance(float balance)
     }
 }
 
-} // namespace android::audio_utils
+} } // namespace android::audio_utils
